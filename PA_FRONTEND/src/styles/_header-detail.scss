@@ -1,0 +1,9 @@
+.section-header-detail{
+    display: grid;
+    grid-template-columns: 41% 1fr;
+    padding: 5px;
+    padding-left: 20px;
+    img{
+        margin-top: 20px;
+    }
+}

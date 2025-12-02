@@ -1,0 +1,19 @@
+.container-data{
+    form{
+          display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 30px;
+    div{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      
+    }
+      select{
+            height: 30px;
+            padding: 5px 10px;
+            box-sizing: border-box;
+        }
+    }
+  
+}

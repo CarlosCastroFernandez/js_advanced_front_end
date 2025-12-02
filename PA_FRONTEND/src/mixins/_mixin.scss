@@ -6,3 +6,9 @@
   font-size: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+
+@mixin createInput(){
+    height: 30px;
+    border-radius: 10px;
+    padding: 5px;
+}
