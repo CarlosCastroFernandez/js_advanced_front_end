@@ -1,0 +1,8 @@
+@mixin createButton() {
+  all: unset;
+  border: 2px black solid;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
