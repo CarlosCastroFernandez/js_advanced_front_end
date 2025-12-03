@@ -77,7 +77,7 @@ function createBodyTable(usuarios) {
 function eventosModal() {
     const modal=document.getElementById("miModal");
     const botonCerrar=document.querySelector(".cerrar");
-    const botonAccion=document.querySelector(".form-newUser")
+    const botonAccion=document.querySelector("#accionModal")
   botonCerrar.addEventListener("click", () => {
     modal.style.display = "none";
   });
@@ -90,9 +90,11 @@ function eventosModal() {
   });
 
   // Ejemplo: acción dentro del modal
-  botonAccion.addEventListener("click", () => {
+  botonAccion.addEventListener("click", (e) => {
+    e.preventDefault();
     const filas = document.querySelectorAll("tbody");
     const filaNueva = document.createElement("tr");
+    modal.style.display="none";
     //LLamada api que devuelve objeto
   });
 }

@@ -38,6 +38,32 @@
         </div>
       </div>
 
+       <div id="miModal2" class="modal2" style="display: none;">
+        <div class="modal-contenido2">
+          <span class="cerrar2">&times;</span>
+          <form class="user-detail">
+            <h2>Detalles del Usuario</h2>
+            <label for="name2">Nombre</label>
+            <input id="name2" type="text" minlength="3" maxlength="30" autofocus required>
+            <label for="lastName2">Apellidos</label>
+            <input id="lastName2" type="text" min="3" maxlength="30" required>
+            <label for="email2">Correo</label>
+            <input id="email2" type="email" required>
+            <label for="password2">Contraseña</label>
+            <input id="password2" type="password" required minlength="3" maxlength="10">
+            <div>
+              <input type="radio" name="grupo1" id="user-radio2">
+              <label for="user-radio2">Usuario</label>
+              <input type="radio" name="grupo1" id="admin-radio2">
+              <label for="admin-radio2">Administrador</label>
+            </div>
+
+            <button id="accionModal2">Aceptar</button>
+          </form>
+
+        </div>
+      </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
