@@ -1,9 +1,11 @@
 import { getAllUser } from "./apiFetch";
 
-export function createMain() {
+export async function createMain() {
   let usuarios;
   if (sessionStorage.getItem("usuarios") === null) {
-    usuarios = getAllUser();
+    usuarios = await getAllUser();
+    console.log("ENTROO"+usuarios);
+    
   }
   const app = document.querySelector("#app");
   const section = document.createElement("section");
@@ -28,7 +30,7 @@ export function createTable(usuarios) {
   return table;
 }
 function createHeaderTable() {
-const header=["Nombre","Apellidos","email","Role","password"]
+const header=["ID","NOMBRE","APELLIDOS","EMAIL","ROLE", "ACTIVO"]
   const tHead = document.createElement("thead");
   const tr = document.createElement("tr");
   for (let i = 0; i < header.length; i++) {
