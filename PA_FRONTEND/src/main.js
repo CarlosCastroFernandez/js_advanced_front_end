@@ -3,7 +3,8 @@ import { createMain } from "./codeJS/table";
 import { createHeader } from "./codeJS/headerTable";
 
 createHeader();
-createMain();
+await createMain();
+
 
 
 document.addEventListener("click",(e)=>{

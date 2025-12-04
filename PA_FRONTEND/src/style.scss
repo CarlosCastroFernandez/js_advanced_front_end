@@ -3,3 +3,12 @@
 @import "./styles/context-menu";
 @import "./styles/modal";
 @import "./styles/modal2";
+
+
+body, html{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}

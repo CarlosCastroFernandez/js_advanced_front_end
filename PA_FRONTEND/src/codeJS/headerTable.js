@@ -1,13 +1,13 @@
 export function createHeader() {
   const main = document.querySelector("#app");
-  const header = document.createElement("header");
+  const header = document.querySelector("#header");
   const section = document.createElement("section");
   section.className="section-header-table";
 
   section.appendChild(createContainerPrincipal());
   section.appendChild(createForm());
   header.appendChild(section);
-  main.appendChild(header);
+
 }
 
 function createContainerPrincipal() {

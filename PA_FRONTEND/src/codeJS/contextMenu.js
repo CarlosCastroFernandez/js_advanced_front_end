@@ -1,6 +1,8 @@
+import { deleteUser, editUser } from "./apiFetch";
+import { createMain } from "./table";
 
 export function createContextMenu(filaSeleccionada, usuarios) {
-   eventosModal();
+
   const containerMenu = document.createElement("div");
 
   containerMenu.className = "container-menu";
@@ -10,11 +12,14 @@ export function createContextMenu(filaSeleccionada, usuarios) {
   parrafo1.addEventListener("click", (event) => {
     let arrayFila = filaSeleccionada.children;
     const object = {
-      nombre: arrayFila[0].textContent,
-      apellido: arrayFila[1].textContent,
-      email: arrayFila[2].textContent,
-      rol: arrayFila[3].textContent,
+      _id: arrayFila[0].textContent,
+      nombre: arrayFila[1].textContent,
+      apellido: arrayFila[2].textContent,
+      email: arrayFila[3].textContent,
+      rol: arrayFila[4].textContent,
+      isActive: arrayFila[5].textContent
     };
+    sessionStorage.setItem("idMod", object._id);
     console.log(object);
 
     /*document.querySelector("#app").removeChild(document.querySelector(".section-table"));
@@ -25,16 +30,37 @@ export function createContextMenu(filaSeleccionada, usuarios) {
     createUserDetail(object);*/
     document.body.querySelector(".modal2").style.display = "block";
     mapModal(object);
-   
+
   });
   const parrafo2 = document.createElement("p");
   parrafo2.className = "delete-row";
   parrafo2.textContent = "Eliminar";
-  parrafo2.addEventListener("click", (event) => {
+  parrafo2.addEventListener("click", async (event) => {
     const tBody = document.querySelector("tbody");
-    tBody.removeChild(filaSeleccionada);
-    let array = Array.from(filaSeleccionada.children);
-    if (usuarios.includes(filaSeleccionada)) usuarios.pull(filaSeleccionada);
+    if (confirm("Si borras el ususario " + filaSeleccionada.children[3].textContent + " se borrara de la base de datos, ¿estas seguro?")) {
+      const response = await deleteUser(filaSeleccionada.children[0].textContent)
+      if (response === "Success") {
+
+        tBody.removeChild(filaSeleccionada);
+        let array = Array.from(filaSeleccionada.children);
+        console.log(array);
+        const object = {
+          _id: array[0].textContent,
+          nombre: array[1].textContent,
+          apellido: array[2].textContent,
+          email: array[3].textContent,
+          rol: array[4].textContent,
+          isActive: array[5].textContent
+        }
+
+
+        const index=usuarios.findIndex(value=>value._id===object._id) 
+        if (index!==-1)usuarios.splice(index,1)
+        sessionStorage.setItem("usuarios", JSON.stringify(usuarios));
+      }
+
+    }
+
   });
   containerMenu.appendChild(parrafo1);
   containerMenu.appendChild(parrafo2);
@@ -57,27 +83,41 @@ function eventosModal() {
   });
 
   // Ejemplo: acción dentro del modal
-  botonAccion.addEventListener("click", (e) => {
+  botonAccion.addEventListener("click", async (e) => {
     e.preventDefault();
-    console.log("ENTROOOO");
     const object = {};
+    object._id = sessionStorage.getItem("idMod")
     const name = document.querySelector("#name2");
     object.name = name.value;
     const lastName = document.querySelector("#lastName2");
     object.lastName = lastName.value;
     const email = document.querySelector("#email2");
     object.email = email.value;
-    const password = document.querySelector("#password2");
-    object.password = password.value;
+    const password = document.querySelector("#password2").value;
+
+    if (password !== "") object.password = password;
+
     if (document.querySelector("#user-radio2").checked) {
       object.rol = "user";
     } else {
       object.rol = "admin";
     }
-    if(confirm("Estas seguro"))  console.log("Subida ");
-      //subida a base de datos
-     
-    modal.style.display="none"
+    object.isActive = document.querySelector("#active").checked;
+    console.log(object);
+
+    if (confirm("Estas seguro")) {
+      const data = await editUser(object);
+
+      const usersOld = JSON.parse(sessionStorage.getItem("usuarios"));
+      const pos = usersOld.findIndex(value => value._id === object._id);
+      if (pos !== -1) usersOld[pos] = data
+      sessionStorage.setItem("usuarios", JSON.stringify(usersOld));
+      document.getElementById("app").innerHTML = "";
+      await createMain();
+
+    }
+
+    modal.style.display = "none"
 
   });
 }
@@ -94,4 +134,8 @@ function mapModal(filaSeleccionada) {
   role === "user"
     ? (document.querySelector("#user-radio2").checked = true)
     : (document.querySelector("#admin-radio2").checked = true);
+  const isActive = filaSeleccionada.isActive
+  isActive === "Activo" ? document.querySelector("#active").checked = true : document.querySelector("#active").checked = false;
+
 }
+eventosModal();

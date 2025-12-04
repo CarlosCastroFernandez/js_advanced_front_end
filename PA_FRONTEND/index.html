@@ -7,7 +7,7 @@
     <title>pa-frontend</title>
   </head>
   <body>
-    <header></header>
+    <header id="header"></header>
     <main id="app"></main>
 
     <!-- LO PRIMERO DE TODO EL LOG-IN-->
@@ -30,6 +30,8 @@
               <label for="user-radio">Usuario</label>
               <input type="radio" name="grupo1" id="admin-radio">
               <label for="admin-radio">Administrador</label>
+              <label for="active">¿Activo?</label>
+              <input id="active" type="checkbox">
             </div>
 
             <button id="accionModal">Aceptar</button>
@@ -56,9 +58,12 @@
               <label for="user-radio2">Usuario</label>
               <input type="radio" name="grupo1" id="admin-radio2">
               <label for="admin-radio2">Administrador</label>
+              <label for="active">¿Activo?</label>
+              <input id="active" type="checkbox">
+
             </div>
 
-            <button id="accionModal2">Aceptar</button>
+            <button id="accionModal2">Modificar</button>
           </form>
 
         </div>
