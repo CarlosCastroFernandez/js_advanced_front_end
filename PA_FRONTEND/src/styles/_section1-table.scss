@@ -11,7 +11,14 @@ div {
 }
 #app{
 height: 80%;
-
+background-color: #869E9A;
+.button-newUser{
+  @include createButton();
+  cursor:pointer;
+  &:hover{
+    background-color: grey;
+  }
+}
 .section-table {
  
   padding: 30px;
@@ -30,6 +37,7 @@ height: 80%;
       display: table;
       width: 100%;
       table-layout: fixed;
+    
     }
 
     thead th {
@@ -48,7 +56,7 @@ height: 80%;
       height: 95%;
       tr{
         &:hover{
-          background-color: yellow;
+          background-color: grey;
         }
          td {
         border: 1px solid black;

@@ -1,10 +1,13 @@
 import "./style.scss";
-import { createMain } from "./codeJS/table";
-import { createHeader } from "./codeJS/headerTable";
+import { login } from "./codeJS/login";
 
-createHeader();
-await createMain();
 
+
+
+
+
+
+await login();
 
 
 document.addEventListener("click",(e)=>{
