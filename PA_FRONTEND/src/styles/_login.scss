@@ -5,12 +5,21 @@ height: 100%;
 .section-login{
     height: 100%;
     display: flex;
-    justify-content: flex-start;
-    gap: 13%;
+    justify-content: center;
+    width: 100%;
     background-color: #869E9A;
-    
-    .container-login{
+    .container-img-login{
+        width: 70%;
         height: 100%;
+        img{
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+    }
+    .container-login{
+        height: 90%;
         display: flex;
         flex-direction: column;
         justify-content: center;
