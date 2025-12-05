@@ -1,6 +1,14 @@
 @import "../mixins/mixin";
 header{
     background-color: #869E9A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        height: 40px;
+        background-color: red;
+        color: white;
+    }
     section{
         padding: 20px;
         display: flex;

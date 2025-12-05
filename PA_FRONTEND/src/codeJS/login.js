@@ -33,9 +33,16 @@ export async function login() {
 
         const data = await sendLogin(correo, password)
         if (data.status !== "Failed") {
-            document.querySelector("#app").innerHTML = "";
-            createHeader();
-            await createMain()
+            document.querySelector(".section-login").style.display="none";
+                if (document.querySelector("header")){
+                     createHeader();
+                    await createMain()
+                }else{
+                     await createMain()
+                }
+                 
+            
+          
         }
 
 

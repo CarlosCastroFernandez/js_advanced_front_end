@@ -129,8 +129,8 @@ export async function getNewToken() {
     });
     if (!response.ok) throw new Error("Ha ocurrido un error");
     const data = await response.json();
-    const token = data.tokenNew;
-    localStorage.setItem("token", token);
+   
+    
     console.log("EL PRIMER TOKEN ES VALIDO");
     
     return true;

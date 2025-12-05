@@ -1,12 +1,26 @@
+import { login } from "./login";
+
 export function createHeader() {
   const main = document.querySelector("#app");
   const header = document.querySelector("#header");
+  const buttonLogOut=document.createElement("button")
+  buttonLogOut.textContent="Log-Out"
+  header.appendChild(buttonLogOut)
   const section = document.createElement("section");
   section.className="section-header-table";
 
   section.appendChild(createContainerPrincipal());
   section.appendChild(createForm());
   header.appendChild(section);
+  buttonLogOut.addEventListener("click",async (e)=>{
+    sessionStorage.clear();
+    localStorage.clear();
+    main.removeChild(document.querySelector(".section-table"))
+    document.querySelector(".button-newUser").remove();
+    header.innerHTML="";
+    document.querySelector(".section-login").style.display="flex"
+   await login();
+  })
 
 }
 
