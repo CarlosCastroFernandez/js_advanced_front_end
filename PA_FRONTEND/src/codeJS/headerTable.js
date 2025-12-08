@@ -1,6 +1,6 @@
 import { login } from "./login";
 
-export function createHeader() {
+export async function createHeader() {
   const main = document.querySelector("#app");
   const header = document.querySelector("#header");
   const buttonLogOut=document.createElement("button")
@@ -19,7 +19,7 @@ export function createHeader() {
     document.querySelector(".button-newUser").remove();
     header.innerHTML="";
     document.querySelector(".section-login").style.display="flex"
-   await login();
+   
   })
 
 }

@@ -14,11 +14,11 @@ export async function login() {
         formSingin.style.display = "flex";
         formSingup.style.display = "none";
         buttonSigin.style.backgroundColor="grey"
-         buttonSigup.style.backgroundColor="white"
+         buttonSigup.style.backgroundColor="transparent"
     })
 
     buttonSigup.addEventListener("click", (event) => {
-        buttonSigin.style.backgroundColor="white"
+        buttonSigin.style.backgroundColor="transparent"
         buttonSigup.style.backgroundColor="grey"
         formSingin.style.display = "none";
         formSingup.style.display = "flex";
@@ -34,15 +34,11 @@ export async function login() {
         const data = await sendLogin(correo, password)
         if (data.status !== "Failed") {
             document.querySelector(".section-login").style.display="none";
-                if (document.querySelector("header")){
-                     createHeader();
-                    await createMain()
-                }else{
-                     await createMain()
-                }
+             createHeader();
+            await createMain()
                  
             
-          
+
         }
 
 

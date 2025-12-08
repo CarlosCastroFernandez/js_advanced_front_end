@@ -24,14 +24,14 @@ height: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 2.5rem;
        
      
         .group-button-login{
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 1.25rem;
             button{
                 
                 @include createButton();
@@ -45,14 +45,14 @@ height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap:20px;
+            gap:1.25rem;
             justify-content: center;
-            font-size: 25px;
+            font-size: 1.5625rem;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             input{
-                height: 30px;
-                border-radius: 10px;
-                width: 300px;
+                height: 1.875rem;
+                border-radius: .625rem;
+                width: 18.75rem;
             }
             button{
                 

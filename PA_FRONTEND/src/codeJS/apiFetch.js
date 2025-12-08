@@ -9,12 +9,18 @@ export async function getAllUser() {
     });
     const data = await response.json();
     console.log(data);
-    if (data.status === "Failed") return null;
+    if (data.status === "Failed") return  new Error("Hubo un problema "+data.message);
+     new Error("Erro");
     const users = data.data;
     console.log(data.data);
 
     return users;
-  } catch (error) {}
+  } catch (error) {
+     return (data = {
+      status: "Failed",
+      meesage: error.message,
+    });
+  }
 }
 
 export async function sendLogin(email, password) {
@@ -61,11 +67,14 @@ export async function editUser(user) {
     data = await response.json();
     console.log(data);
 
-    if (!response.ok) return null;
+    if (!response.ok) return new Error("Error en la respuesta");
 
     return data.data;
   } catch (error) {
-    return (data = error.message);
+    return (data = {
+      status: "Failed",
+      meesage: error.message,
+    });
   }
 }
 export async function deleteUser(id) {
@@ -84,12 +93,15 @@ export async function deleteUser(id) {
     data = await response.json();
     console.log(data);
 
-    if (!response.ok) return null;
+    if (!response.ok) return new Error("Error en la respuesta");
     console.log(data.status);
 
     return data.status;
   } catch (error) {
-    return (data = error.message);
+   return (data = {
+      status: "Failed",
+      meesage: error.message,
+    });
   }
 }
 
@@ -107,17 +119,19 @@ export async function createNewUser(user) {
     data = await response.json();
     console.log(data);
 
-    if (!response.ok) return null;
+    if (!response.ok) return new Error("Error en la respuesta");
 
     return data.data;
   } catch (error) {
-    return (data = error.message);
+   return (data = {
+      status: "Failed",
+      meesage: error.message,
+    });
   }
 }
 
 export async function getNewToken() {
-    console.log("NEW TOKEN GIVE");
-    
+  
   try {
     const tokenActual = localStorage.getItem("token");
     const response = await fetch("http://localhost:3000/getAllUser/newToken", {
@@ -131,14 +145,10 @@ export async function getNewToken() {
     const data = await response.json();
    
     
-    console.log("EL PRIMER TOKEN ES VALIDO");
-    
     return true;
   } catch (error) {
-    console.log("EL PRIMER TOKEN NO ES VALIDO");
     
     try {
-      console.log(error.message);
       const tokenRefresh = localStorage.getItem("token-refresh");
       const response = await fetch(
         "http://localhost:3000/getAllUser/newToken",
@@ -153,15 +163,14 @@ export async function getNewToken() {
       if (!response.ok) throw new Error("Ha ocurrido un error");
       const data = await response.json();
       const token = data.tokenNew;
-      console.log(token);
       localStorage.setItem("token", token);
-      console.log("SEGINDO TOKEN ES VALIDO");
       
       return true;
     } catch (error) {
-        console.log("SEGUNDO TOKEN NO ES VALIDO "+error.message);
-        
-        return false
+       return (data = {
+      status: "Failed",
+      meesage: error.message,
+    });
     }
   }
 }

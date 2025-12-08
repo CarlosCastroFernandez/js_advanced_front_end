@@ -21,13 +21,6 @@ export function createContextMenu(filaSeleccionada, usuarios) {
     };
     sessionStorage.setItem("idMod", object._id);
     console.log(object);
-
-    /*document.querySelector("#app").removeChild(document.querySelector(".section-table"));
-    document.querySelector("button").remove();
-    const sectionHeader=document.querySelector(".section-header-table");
-    sectionHeader.parentElement.remove();
-    createHeaderDetails();
-    createUserDetail(object);*/
     document.body.querySelector(".modal2").style.display = "block";
     mapModal(object);
 
@@ -124,6 +117,7 @@ function eventosModal() {
 
 function mapModal(filaSeleccionada) {
   const name = document.querySelector("#name2");
+  console.log("FILAAAA"+JSON.stringify(filaSeleccionada));
   name.value = filaSeleccionada.nombre;
   const lastName = document.querySelector("#lastName2");
   lastName.value = filaSeleccionada.apellido;
@@ -135,7 +129,7 @@ function mapModal(filaSeleccionada) {
     ? (document.querySelector("#user-radio2").checked = true)
     : (document.querySelector("#admin-radio2").checked = true);
   const isActive = filaSeleccionada.isActive
-  isActive === "Activo" ? document.querySelector("#active").checked = true : document.querySelector("#active").checked = false;
+document.querySelector("#active2").checked = (isActive === "Activo");
 
 }
 eventosModal();

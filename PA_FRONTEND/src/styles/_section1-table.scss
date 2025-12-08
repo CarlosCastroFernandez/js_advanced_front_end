@@ -29,7 +29,7 @@ background-color: #869E9A;
     border-collapse: collapse;
     display: block;
     text-align: center;
-    font-size: 20px;
+    font-size: 1.125rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     
     thead,
@@ -45,8 +45,8 @@ background-color: #869E9A;
       top: 0;
       background: white;
       z-index: 2;
-      border-bottom: 2px solid black;
-      padding: 5px;
+      border-bottom: .125rem solid black;
+      padding: .3125rem;
     }
 
     tbody {
@@ -59,8 +59,8 @@ background-color: #869E9A;
           background-color: grey;
         }
          td {
-        border: 1px solid black;
-        padding: 5px;
+        border: .0625rem solid black;
+        padding: .3125rem;
       }
       }
      

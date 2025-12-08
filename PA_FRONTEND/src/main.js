@@ -10,7 +10,7 @@ if (localStorage.getItem("token")===null||localStorage.getItem("token")==="undef
 }else{
   if(await getNewToken()){
     sessionStorage.clear()
-    createHeader();
+    await createHeader();
     await createMain();
     document.querySelector(".section-login").style.display="none"
   }else{
