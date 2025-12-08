@@ -9,14 +9,15 @@ export async function getAllUser() {
     });
     const data = await response.json();
     console.log(data);
-    if (data.status === "Failed") return  new Error("Hubo un problema "+data.message);
-     new Error("Erro");
+    if (data.status === "Failed")
+      return new Error("Hubo un problema " + data.message);
+    new Error("Erro");
     const users = data.data;
     console.log(data.data);
 
     return users;
   } catch (error) {
-     return (data = {
+    return (data = {
       status: "Failed",
       meesage: error.message,
     });
@@ -98,7 +99,7 @@ export async function deleteUser(id) {
 
     return data.status;
   } catch (error) {
-   return (data = {
+    return (data = {
       status: "Failed",
       meesage: error.message,
     });
@@ -123,7 +124,7 @@ export async function createNewUser(user) {
 
     return data.data;
   } catch (error) {
-   return (data = {
+    return (data = {
       status: "Failed",
       meesage: error.message,
     });
@@ -131,7 +132,6 @@ export async function createNewUser(user) {
 }
 
 export async function getNewToken() {
-  
   try {
     const tokenActual = localStorage.getItem("token");
     const response = await fetch("http://localhost:3000/getAllUser/newToken", {
@@ -143,11 +143,9 @@ export async function getNewToken() {
     });
     if (!response.ok) throw new Error("Ha ocurrido un error");
     const data = await response.json();
-   
-    
+
     return true;
   } catch (error) {
-    
     try {
       const tokenRefresh = localStorage.getItem("token-refresh");
       const response = await fetch(
@@ -164,13 +162,13 @@ export async function getNewToken() {
       const data = await response.json();
       const token = data.tokenNew;
       localStorage.setItem("token", token);
-      
+
       return true;
     } catch (error) {
-       return (data = {
-      status: "Failed",
-      meesage: error.message,
-    });
+      return (data = {
+        status: "Failed",
+        meesage: error.message,
+      });
     }
   }
 }

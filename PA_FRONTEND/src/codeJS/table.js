@@ -3,15 +3,17 @@ import { createContextMenu } from "./contextMenu";
 
 export async function createMain() {
   let usuarios;
-  if (sessionStorage.getItem("usuarios") === "undefined" || sessionStorage.getItem("usuarios") === null) {
+  if (
+    sessionStorage.getItem("usuarios") === "undefined" ||
+    sessionStorage.getItem("usuarios") === null
+  ) {
     usuarios = await getAllUser();
     if (!usuarios) console.log("FALLOOOOO");
-    
-    sessionStorage.setItem("usuarios", JSON.stringify(usuarios));
 
+    sessionStorage.setItem("usuarios", JSON.stringify(usuarios));
   } else {
     console.log("ENTRO POR AQUI USUARIO");
-    
+
     usuarios = JSON.parse(sessionStorage.getItem("usuarios"));
   }
   const app = document.querySelector("#app");
@@ -40,7 +42,7 @@ export function createTable(usuarios) {
   return table;
 }
 function createHeaderTable() {
-  const header = ["ID", "NOMBRE", "APELLIDOS", "EMAIL", "ROLE", "ACTIVO"]
+  const header = ["ID", "NOMBRE", "APELLIDOS", "EMAIL", "ROLE", "ACTIVO"];
   const tHead = document.createElement("thead");
   const tr = document.createElement("tr");
   for (let i = 0; i < header.length; i++) {
@@ -61,13 +63,12 @@ function createBodyTable(usuarios) {
     for (let value in element) {
       const td = document.createElement("td");
       if (typeof element[value] === "boolean") {
-        td.textContent = element[value] === true ? "Activo" : "Desactivo"
+        td.textContent = element[value] === true ? "Activo" : "Desactivo";
         tr.appendChild(td);
       } else {
-        td.textContent = element[value]
+        td.textContent = element[value];
         tr.appendChild(td);
       }
-
     }
     tBody.appendChild(tr);
 
@@ -91,7 +92,7 @@ function createBodyTable(usuarios) {
 function eventosModal() {
   const modal = document.getElementById("miModal");
   const botonCerrar = document.querySelector(".cerrar");
-  const botonAccion = document.querySelector("#accionModal")
+  const botonAccion = document.querySelector("#accionModal");
   botonCerrar.addEventListener("click", () => {
     modal.style.display = "none";
   });
@@ -106,41 +107,42 @@ function eventosModal() {
   // Ejemplo: acción dentro del modal
   botonAccion.addEventListener("click", async (e) => {
     e.preventDefault();
-      let object = {};
-      const name = document.querySelector("#name");
-      object.name = name.value;
-      const lastName = document.querySelector("#lastName");
-      object.lastName = lastName.value;
-      const email = document.querySelector("#email");
-      object.email = email.value
-      const password = document.querySelector("#password");
-      object.password = password.value
-      const role = (document.querySelector("#user-radio").checked === true) ? "user" : "admin";
-      object.role = role
-      const isActive = document.querySelector("#active").checked === true ? true : false
-      object.isActive = isActive
-      const filas = document.querySelector("tbody");
-      const filaNueva = document.createElement("tr");
-      const newUserBBDD = await createNewUser(object)
-      for (let value in object) {
-        console.log(value);
-        
-        const td = document.createElement("td");
-        if (typeof value === "boolean") {
-          td.textContent =object[value] === true ? "Activo" : "Desactivo"
-          filaNueva.appendChild(td);
-        } else {
-          td.textContent = object[value]
-          filaNueva.appendChild(td);
-        }
-        filas.appendChild(filaNueva);
+    let object = {};
+    const name = document.querySelector("#name");
+    object.name = name.value;
+    const lastName = document.querySelector("#lastName");
+    object.lastName = lastName.value;
+    const email = document.querySelector("#email");
+    object.email = email.value;
+    const password = document.querySelector("#password");
+    object.password = password.value;
+    const role =
+      document.querySelector("#user-radio").checked === true ? "user" : "admin";
+    object.role = role;
+    const isActive =
+      document.querySelector("#active").checked === true ? true : false;
+    object.isActive = isActive;
+    const filas = document.querySelector("tbody");
+    const filaNueva = document.createElement("tr");
+    const newUserBBDD = await createNewUser(object);
+    for (let value in object) {
+      console.log(value);
+
+      const td = document.createElement("td");
+      if (typeof value === "boolean") {
+        td.textContent = object[value] === true ? "Activo" : "Desactivo";
+        filaNueva.appendChild(td);
+      } else {
+        td.textContent = object[value];
+        filaNueva.appendChild(td);
       }
-      const usersOld=JSON.parse(sessionStorage.getItem("usuarios"));
-      delete object.password
-      usersOld.push(object)
-      sessionStorage.setItem("usuarios",JSON.stringify(usersOld));
-      modal.style.display = "none";
-    
+      filas.appendChild(filaNueva);
+    }
+    const usersOld = JSON.parse(sessionStorage.getItem("usuarios"));
+    delete object.password;
+    usersOld.push(object);
+    sessionStorage.setItem("usuarios", JSON.stringify(usersOld));
+    modal.style.display = "none";
 
     //LLamada api que devuelve objeto
   });
