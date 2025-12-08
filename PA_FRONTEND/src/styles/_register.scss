@@ -1,0 +1,70 @@
+@import "../mixins/mixin";
+#app{
+height: 100%;
+
+.section-login{
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.875rem;
+    width: 100%;
+    background-color: #869E9A;
+    .container-img-login{
+        width: 70%;
+          height: 100%;
+        img{
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+    }
+    
+    .container-login{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: .625rem;
+       
+     
+        .group-button-login{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.25rem;
+            button{
+                
+                @include createButton();
+                cursor: pointer;
+                &:hover{
+                    background-color: gray;
+                }
+            }
+        }
+        .form-singup{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap:1.25rem;
+            justify-content: center;
+            font-size: 1.5625rem;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            input{
+                height: 1.875rem;
+                border-radius: .625rem;
+                width: 18.75rem;
+            }
+            button{
+                
+                  @include createButton();
+                  cursor: pointer;
+                  &:hover{
+                    background-color: gray;
+                }
+            }
+        }
+    }
+}
+}
